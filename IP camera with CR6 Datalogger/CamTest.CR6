@@ -1,0 +1,21 @@
+'Shishir Khanal
+' 11/2/2020
+'Code provided by Nathaniel Wright from Campbell Scientific to send  jpeg pic request to an IP camera via CR6
+'Reolink Support Link: https://support.reolink.com/hc/en-us/articles/360007011233-How-to-Capture-Live-JPEG-Image-of-Reolink-Cameras-via-Web-Browsers
+
+'Declare Public Variables
+'Example:
+Public http_Header, Get_IP_Image,counter
+
+'Main Program
+BeginProg
+  'Scan every 1 mins
+	Scan (1,Min,0,0)
+	  'Use provided URL to send the picture click request to camera and save it to CPU of CR6
+		http_Header=""
+    Get_IP_Image = HTTPGet ("http://134.50.75.54/cgi-bin/api.cgi?cmd=Snap&channel=0&rs=wuuPhkmUCeI9WG7C&user=admin&password=[blank]","CPU:Newphoto"& counter &".jpg", http_Header)
+    counter  = counter +1
+		'Enter other measurement instructions
+	NextScan
+EndProg
+
